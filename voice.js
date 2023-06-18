@@ -1,4 +1,3 @@
-//Part of Asif Started 
 // Get the user query.
 const query = document.querySelector("#query").value;
 
@@ -33,4 +32,3 @@ fetch("https://chatgpt.googleapis.com/v1/text/generate", {
     // Display the ChatGPT answer.
     document.getElementById("chatgpt-results").innerHTML = result.text;
   });
-//Part of Asif Ended 

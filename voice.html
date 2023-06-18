@@ -5,8 +5,6 @@
     <title>AI-Based Voice Assistant</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Montserrat&family=Satisfy&display=swap"
         rel="stylesheet">
-
-
     <!-- adding font awesome cdn here  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -16,9 +14,10 @@
 </head>
 
 <body>
-    <!-- PART OF ASIF STARETED HERE -->
+    <div class="bgcolor">
+        <!-- PART OF ASIF STARETED HERE -->
     <div id="welcome" style="text-align: center;">
-        <h1>WELCOME TO SHOB JANTA</h1>
+        <h1 data-text="WELCOME TO SHOB JANTA">WELCOME TO SHOB JANTA</h1>
     </div>
     <div id="container">
 
@@ -28,10 +27,18 @@
         </div>
 
         <br><br>
-        <div class="button2">
+        <div class="button2" id="submit">
             <input type="submit" value="Search">
         </div>
 
+        <br>
+
+        <div class="s-result" id="s-result">
+            <h2 id="abm">Search Result</h2>
+            <hr class="hr">
+        
+            </div>
+        
     </div>
     <div id="results">
         <div id="bard-results"></div>
@@ -40,28 +47,14 @@
     </div>
 
     <p></p>
-
-    <div class="achievement-contact">
-        <div class="space col-4">
-
-
-        </div>
-
-        <div class="contact col-4" id="contact-me">
-            <h2>CONTACT US FOR ANY SUGGESTIONS</h2>
-            <hr class="dotted-hr">
-            <form action="mailto:asif.bhuiyan3330@gmail.com" method="post" enctype="text/plain">
-                <p><input type="text" placeholder="Your Name" name="name"></p>
-                <p><input type="email" placeholder="Your Email" name="email"></p>
-                <textarea placeholder="Your Message Here" name="message" cols="30" rows="10"></textarea>
-                <button type="submit">SEND</button>
-                <button type="reset">RESET</button>
-            </form>
-        </div>
+    </div>
+    
+<br>
+    <div class="contact">
 
 
-        <div class="contact-links col-4" id="contact">
-            <h2>More Ways to Contact</h2>
+        <div class="Connect" id="contact">
+            <h2>Contact With Us</h2>
             <hr class="dotted-hr">
 
             <div class="media-buttons">
