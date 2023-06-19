@@ -1,6 +1,26 @@
 #PART OF ASIF STARETED HERE
 import os
 import requests
+import speech_recognition as sr
+
+def startVoiceInput():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        audio = r.listen(source)
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio)
+        print("You said:", query)
+        # Perform further actions with the recognized text
+        # ...
+    except sr.UnknownValueError:
+        print("Sorry, I could not understand your speech.")
+    except sr.RequestError:
+        print("Sorry, I am currently unable to process your request.")
+
+# Call the start_voice_input() function when needed
+startVoiceInput()
 
 # Get the user query.
 query = os.environ["QUERY"]

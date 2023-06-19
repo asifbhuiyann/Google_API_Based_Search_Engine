@@ -7,6 +7,7 @@
         rel="stylesheet">
     <!-- adding font awesome cdn here  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="/Voice Assistant using AI/voice.css">
     <link rel="stylesheet" href="/Voice Assistant using AI/voice.js">
@@ -16,41 +17,147 @@
 <body>
     <div class="bgcolor">
         <!-- PART OF ASIF STARETED HERE -->
-    <div id="welcome" style="text-align: center;">
-        <h1 data-text="WELCOME TO SHOB JANTA">WELCOME TO SHOB JANTA</h1>
-    </div>
-    <div id="container">
-
-        <br id="query">
-        <div class="button1">
-            <input type="text" id="input1" name="query" placeholder="Enter your query">
+        <div id="welcome" style="text-align: center;">
+            <h1 data-text="WELCOME TO SHOB JANTA">WELCOME TO SHOB JANTA</h1>
         </div>
+        <div id="container">
 
-        <br><br>
-        <div class="button2" id="submit">
+            <br id="query">
+
+
+
+            <!-- <div class="button1">
+            <input type="text" id="input1" name="query" placeholder="Enter your query">
+        </div> -->
+
+
+            <!-- <div class="button1">
+                <div class="input-icon">
+                    <input type="text" id="input1" name="query" placeholder="Enter your query">
+                    <i class="fas fa-microphone-alt" onclick="startVoiceInput()"></i>
+                    
+                </div>
+                <br>
+                <button id="enterBtn" onclick="performSearch()"><i class="fas fa-search"></i></button>
+            </div>
+
+            <script>
+                function startVoiceInput() {
+                    var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    recognition.start();
+
+                    recognition.onresult = function (event) {
+                        var query = event.results[0][0].transcript;
+                        console.log("You said:", query);
+                        // Perform further actions with the recognized text
+                        // ...
+                    };
+
+                    recognition.onerror = function (event) {
+                        console.log("Sorry, I could not understand your speech.");
+                    };
+                }
+            </script> -->
+
+
+            <div class="button1">
+                <input type="text" id="input1" name="query" placeholder="Enter your query">
+                <button id="voiceInputBtn" onclick="startVoiceInput()"><i class="fas fa-microphone-alt"
+                        onclick="startVoiceInput()" @nbsp;></i></button><br><br>
+                <button id="enterBtn" onclick="performSearch()"><i class="fas fa-search"></i></button>
+            </div>
+
+            <script>
+                function startVoiceInput() {
+                    var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    // Update the placeholder with "Listening..." message
+                    document.getElementById("input1").placeholder = "Listening...";
+                    recognition.start();
+
+                    recognition.onresult = function (event) {
+                        var query = event.results[0][0].transcript;
+                        console.log("You said:", query);
+                        document.getElementById("input1").value = query; // Set the value of the input field
+                    };
+
+                    recognition.onerror = function (event) {
+                        console.log("Sorry, I could not understand your speech.");
+                    };
+                }
+
+                function performSearch() {
+                    var query = document.getElementById("input1").value;
+
+                    // Call the Google BARD API with the user query
+                    fetch("https://api.example.com/bard/search", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ query: query })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Check if the response contains a valid answer
+                            if (data && data.hasOwnProperty("answer")) {
+                                var answer = data.answer;
+
+                                // Display the Google BARD answer in the output box
+                                var outputBox = document.getElementById("outputBox");
+                                outputBox.textContent = answer;
+                            } else {
+                                console.log("Invalid response from Google BARD API");
+                            }
+                        })
+                        .catch(error => {
+                            console.log("An error occurred:", error);
+                        });
+                }
+            </script>
+
+
+
+
+
+            <br><br>
+            <!-- <div class="button2" id="submit">
             <input type="submit" value="Search">
         </div>
 
-        <br>
+        <br> -->
 
-        <div class="s-result" id="s-result">
-            <h2 id="abm">Search Result</h2>
-            <hr class="hr">
-        
+            <div class="output-box" id="outputBox">
+                <h2 id="abm">Search Result </h2>
             </div>
-        
-    </div>
-    <div id="results">
-        <div id="bard-results"></div>
-        <div id="chatgpt-results"></div>
-    </div>
+
+
+            <!-- <div class="s-result" id="s-result">
+                <h2 id="abm">Search Result</h2>
+                <hr class="hr">
+                <span id="outputLabel"></span>
+            </div> -->
+
+
+
+
+
+
+
+        </div>
+        <div id="results">
+            <div id="bard-results"></div>
+            <div id="chatgpt-results"></div>
+        </div>
     </div>
 
     <p></p>
     </div>
-    
-<br>
+
+    <br>
     <div class="contact">
+
 
 
         <div class="Connect" id="contact">
@@ -60,12 +167,12 @@
             <div class="media-buttons">
 
                 <button class="btn" onclick="window.open('https://www.facebook.com/aasifbhuiyan/')"
-                    class="btn request-callback"><i class="fa fa-facebook" style="color:  #3b5998;"
+                    class="btn request-callback"><i class="fa-brands fa-facebook" style="color:  #3b5998;"
                         aria-hidden="true"></i></button>
                 <button class="btn" onclick="window.open('https://asifbhuiyan.carrd.co/#')"
                     class="btn request-callback"> <span style="font-size: 1.7rem;">&#127760;</span> </i></button>
                 <button class="btn" onclick="window.open(' https://github.com/asifbhuiyann')"
-                    class="btn request-callback"><i class="fa fa-github" aria-hidden="true"
+                    class="btn request-callback"> <i class="fa-brands fa-github" aria-hidden="true"
                         style="color: #000000;"></i></button>
             </div>
 
