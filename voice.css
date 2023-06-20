@@ -219,19 +219,24 @@ textarea {
   padding: 10px;
   border: 1px solid #ccc;
 } */
+
 .output-box {
   margin-top: 20px;
   padding: 10px;
   border: 1px solid #ccc;
-  background-color: #bfd3d3;
+  background-color: #000000;
   /* padding: 1% 7%; */
   color: white;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  height: 400px;
+  /* height: 400px; */
   width: 800;
   border-radius: 10px;
+  max-height: 400px; /* Set the maximum height of the output box */
+  overflow-y: auto; /* Add vertical scroll bar if content exceeds the box height */
+}
+
   #abm{
-    color: #000000;
+    color: #fff9f9;
   }
 /* PART OF ASIF ENDED HERE */

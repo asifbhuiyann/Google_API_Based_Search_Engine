@@ -69,10 +69,11 @@
             </div>
 
             <script>
+                //voice input function start here
                 function startVoiceInput() {
                     var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
                     recognition.lang = 'en-US';
-                    // Update the placeholder with "Listening..." message
+                    // Updating the placeholder with "Listening..." message
                     document.getElementById("input1").placeholder = "Listening...";
                     recognition.start();
 
@@ -87,39 +88,86 @@
                     };
                 }
 
+                // function performSearch() {
+                //     var query = document.getElementById("input1").value;
+
+                //     // Call the Google BARD API with the user query
+                //     fetch("https://api.example.com/bard/search", {
+                //         method: "POST",
+                //         headers: {
+                //             "Content-Type": "application/json"
+                //         },
+                //         body: JSON.stringify({ query: query })
+                //     })
+                //         .then(response => response.json())
+                //         .then(data => {
+                //             //checking if the answer is valid or not
+                //             if (data && data.hasOwnProperty("answer")) {
+                //                 var answer = data.answer;
+
+                //                 //Display the answer in the box
+                //                 var outputBox = document.getElementById("outputBox");
+                //                 outputBox.textContent = answer;
+                //             } else {
+                //                 console.log("Invalid response from Google BARD API");
+                //             }
+                //         })
+                //         .catch(error => {
+                //             console.log("An error occurred:", error);
+                //         });
+                // }
+
                 function performSearch() {
                     var query = document.getElementById("input1").value;
 
-                    // Call the Google BARD API with the user query
-                    fetch("https://api.example.com/bard/search", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ query: query })
-                    })
+                    // Replace `YOUR_API_KEY` with your actual Google Search API key
+                    // Google search APi : AIzaSyBmlLPwww_zCMoVOhc2JJxYJ5XZ7HO7qwQ
+
+                    var apiKey = "AIzaSyBmlLPwww_zCMoVOhc2JJxYJ5XZ7HO7qwQ";
+                    var cx = "d4c86fe6b96444152";
+                    var url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`;
+
+                    fetch(url)
                         .then(response => response.json())
                         .then(data => {
-                            // Check if the response contains a valid answer
-                            if (data && data.hasOwnProperty("answer")) {
-                                var answer = data.answer;
-
-                                // Display the Google BARD answer in the output box
+                            // Check if the response contains valid search results
+                            if (data && data.items && data.items.length > 0) {
+                                var searchResults = data.items;
                                 var outputBox = document.getElementById("outputBox");
-                                outputBox.textContent = answer;
+                                outputBox.innerHTML = "";
+
+                                // Display each search result in the output box
+                                searchResults.forEach(result => {
+                                    var link = document.createElement("a");
+                                    link.href = result.link;
+                                    link.textContent = result.title;
+                                    link.target = "_blank";
+                                    outputBox.appendChild(link);
+                                    outputBox.appendChild(document.createElement("br"));
+                                    outputBox.appendChild(document.createTextNode(result.snippet));
+                                    outputBox.appendChild(document.createElement("br"));
+                                    outputBox.appendChild(document.createElement("br"));
+                                });
                             } else {
-                                console.log("Invalid response from Google BARD API");
+                                console.log("No search results found");
                             }
                         })
                         .catch(error => {
                             console.log("An error occurred:", error);
                         });
                 }
+
+
+
             </script>
 
+<!-- // Search Engine ID -->
 
-
-
+<!-- 
+<script async src="https://cse.google.com/cse.js?cx=d4c86fe6b96444152">
+</script>
+<div class="gcse-search"></div>
+ -->
 
             <br><br>
             <!-- <div class="button2" id="submit">
@@ -129,7 +177,7 @@
         <br> -->
 
             <div class="output-box" id="outputBox">
-                <h2 id="abm">Search Result </h2>
+                <h2 id="abm">Search Result Will Appear Here</h2>
             </div>
 
 
@@ -161,7 +209,7 @@
 
 
         <div class="Connect" id="contact">
-            <h2>Contact With Us</h2>
+            <h2>Contact Me</h2>
             <hr class="dotted-hr">
 
             <div class="media-buttons">
