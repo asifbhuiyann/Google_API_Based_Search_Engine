@@ -36,29 +36,15 @@
     background-color: #000000;
 }
 #menu:hover {
-    background: rgb(141, 136, 136);
+    background-color: #007bff;
 }
 .navbar{
     float: right;
 }
-.navbar-options {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.navbar-options a {
-    
-    color: #000000;
+.navbar a{
+    color: white;
     text-decoration: none;
-    padding: 10px 0;
 }
-
 /* Show the options when the navbar-toggle is clicked */
 .show {
     display: flex;
@@ -109,7 +95,7 @@
 
 
 .chat-body {
-    padding: 10px;
+    padding: 0px;
     flex-grow: 1; /* Allowing the chat body to take up the remaining space */
     display: flex;
     flex-direction: column;
@@ -190,9 +176,7 @@ button:hover {
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div>
-        <a href="dev_info.php" target="_blank"></a> <button id="menu">Developer</button>
-        </div>
+         <button id="menu"><a href="dev_info.php" target="_blank">Developer</a></button>
     </nav>
 
     <div class="container">
